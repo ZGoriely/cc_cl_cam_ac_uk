@@ -114,6 +114,9 @@ let make_bop loc bop (e1, t1) (e2, t2) =
     | AND, TEbool, TEbool -> (Op(loc, e1, bop, e2), t1) 
     | AND, TEbool,  t     -> report_expecting e2 "boolean" t
     | AND, t,      _      -> report_expecting e1 "boolean" t
+    | XOR, TEbool, TEbool -> (Op(loc, e1, bop, e2), t1) 
+    | XOR, TEbool,  t     -> report_expecting e2 "boolean" t
+    | XOR, t,      _      -> report_expecting e1 "boolean" t
     | EQ,  TEbool, TEbool -> (Op(loc, e1, EQB, e2), t1) 
     | EQ,  TEint,  TEint  -> (Op(loc, e1, EQI, e2), TEbool)  
     | EQ,  _,      _      -> report_type_mismatch (e1, t1) (e2, t2) 

@@ -24,6 +24,7 @@ let translate_bop = function
   | Past.LT -> Ast.LT
   | Past.AND -> Ast.AND
   | Past.OR -> Ast.OR
+  | Past.XOR -> Ast.XOR
   | Past.EQI -> Ast.EQI
   | Past.EQB -> Ast.EQB
   | Past.EQ  -> Errors.complain "internal error, translate found a EQ that should have been resolved to EQI or EQB"

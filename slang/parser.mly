@@ -10,12 +10,12 @@ let get_loc = Parsing.symbol_start_pos
 /* Tokens and types */
 %token<int> INT
 %token<string> IDENT
-%token EOF LPAREN RPAREN COMMA COLON SEMICOLON ADD SUB MUL DIV NOT EQUAL LT ANDOP OROP 
+%token EOF LPAREN RPAREN COMMA COLON SEMICOLON ADD SUB MUL DIV NOT EQUAL LT ANDOP OROP XOROP
 %token WHAT UNIT AND TRUE FALSE IF FI THEN ELSE LET REC IN BEGIN END BOOL INTTYPE UNITTYPE 
 %token ARROW BAR INL INR FST SND FUN NUF CASE OF REF ASSIGN BANG WHILE DO OD 
 
 %left ADD SUB                     /* lowest precedence */
-%left MUL DIV ANDOP OROP EQUAL ARROW  LT /* medium precedence */
+%left MUL DIV ANDOP OROP XOROP EQUAL ARROW  LT /* medium precedence */
 %left ASSIGN              
 /*
 %nonassoc THEN    
@@ -70,6 +70,7 @@ expr:
 | expr EQUAL expr                    { Past.Op(get_loc(), $1, Past.EQ, $3) }
 | expr ANDOP expr                    { Past.Op(get_loc(), $1, Past.AND, $3) }
 | expr OROP expr                     { Past.Op(get_loc(), $1, Past.OR, $3) }
+| expr XOROP expr                    { Past.Op(get_loc(), $1, Past.XOR, $3) }
 | expr ASSIGN expr                   { Past.Assign(get_loc(), $1, $3) }
 | BEGIN exprlist END                 { Past.Seq(get_loc(), $2) }
 | IF expr THEN expr ELSE expr END     { Past.If(get_loc(), $2, $4, $6) }

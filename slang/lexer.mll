@@ -33,6 +33,7 @@ rule token = parse
   | "<" { LT }
   | "&&" { ANDOP }
   | "||" { OROP }
+  | "xor" { XOROP }
   | "|" { BAR }
   | "->" { ARROW }
   | "?" { WHAT }

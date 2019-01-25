@@ -79,6 +79,7 @@ let do_unary = function
 let do_oper = function 
   | (AND,  BOOL m,  BOOL n) -> BOOL (m && n)
   | (OR,   BOOL m,  BOOL n) -> BOOL (m || n)
+  | (XOR,  BOOL m,  BOOL n) -> BOOL (((not m) && n) || (m && (not n)))
   | (EQB,  BOOL m,  BOOL n) -> BOOL (m = n)
   | (LT,   INT m,   INT n)  -> BOOL (m < n)
   | (EQI,  INT m,   INT n)  -> BOOL (m = n)
